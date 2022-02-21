@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_disease_detection/utilities/diseases_images.dart';
 import 'package:plant_disease_detection/utilities/helper.dart';
 import 'package:plant_disease_detection/routes/routes.dart';
 import 'package:plant_disease_detection/utilities/plant_container.dart';

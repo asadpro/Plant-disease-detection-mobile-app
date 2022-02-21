@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:plant_disease_detection/main.dart';
 import 'package:plant_disease_detection/screens/diseases.dart';
 import 'package:plant_disease_detection/utilities/about.dart';
-import 'package:plant_disease_detection/utilities/constant.dart';
 
 class MainDrawer extends StatelessWidget {
   @override

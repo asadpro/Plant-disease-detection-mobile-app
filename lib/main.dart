@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:plant_disease_detection/routes/routes.dart';
 import 'package:plant_disease_detection/screens/drawer.dart';
 import 'package:tflite/tflite.dart';
+import 'package:vector_math/vector_math.dart' as math;
 
 void main() {
   runApp(MyApp());
@@ -87,42 +88,92 @@ class _MyHomePageState extends State<MyHomePage> {
       _result = res!;
 
       if (_result.isEmpty) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: IconButton(
-                icon: Icon(
-                  Icons.warning,
-                  color: Colors.yellow,
+        //Legacy dialog show
+        // showDialog(
+        //   context: context,
+        //   builder: (BuildContext context) {
+        //     return AlertDialog(
+        //       title: IconButton(
+        //         icon: Icon(
+        //           Icons.warning,
+        //           color: Colors.yellow,
+        //         ),
+        //         iconSize: 55.0,
+        //         onPressed: () {},
+        //       ),
+        //       content: Text(
+        //         'File could not be uploaded due to  some technical issues !!. Please go back and pick the right image format.',
+        //         textAlign: TextAlign.center,
+        //         style: TextStyle(color: Colors.red),
+        //       ),
+        //       actions: [
+        //         Center(
+        //           child: TextButton.icon(
+        //             onPressed: () =>
+        //                 Navigator.pushNamed(context, AppRoutes.homePage),
+        //             icon: Icon(
+        //               Icons.arrow_back_ios_new_outlined,
+        //               size: 33.0,
+        //             ),
+        //             label: Text(
+        //               'Back Home',
+        //               style: TextStyle(fontWeight: FontWeight.bold),
+        //             ),
+        //           ),
+        //         )
+        //       ],
+        //     );
+        //   },
+        // );
+        showGeneralDialog(
+            barrierColor: Colors.black.withOpacity(0.5),
+            transitionBuilder: (context, a1, a2, widget) {
+              return Transform.rotate(
+                angle: math.radians(a1.value * 360),
+                child: Opacity(
+                  opacity: a1.value,
+                  child: AlertDialog(
+                      shape: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                          borderRadius: BorderRadius.circular(16.0)),
+                      title: IconButton(
+                        icon: Icon(
+                          Icons.warning,
+                          color: Colors.yellow,
+                        ),
+                        iconSize: 55.0,
+                        onPressed: () {},
+                      ),
+                      content: Text(
+                        'File could not be uploaded due to  some technical issues !!. Please go back and pick the right image format.',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      actions: [
+                        Center(
+                          child: OutlinedButton.icon(
+                            style: OutlinedButton.styleFrom(
+                                padding: EdgeInsets.all(12)),
+                            onPressed: () => Navigator.pushNamed(
+                                context, AppRoutes.homePage),
+                            icon: Icon(
+                              Icons.keyboard_backspace_outlined,
+                              size: 33.0,
+                            ),
+                            label: Text(
+                              'Back Home',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ]),
                 ),
-                iconSize: 55.0,
-                onPressed: () {},
-              ),
-              content: Text(
-                'File could not be uploaded for some reason !!. Please go back and fix the problem.',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.red),
-              ),
-              actions: [
-                Center(
-                  child: TextButton.icon(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, AppRoutes.homePage),
-                    icon: Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      size: 33.0,
-                    ),
-                    label: Text(
-                      'Back Home',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                )
-              ],
-            );
-          },
-        );
+              );
+            },
+            transitionDuration: Duration(milliseconds: 600),
+            barrierDismissible: true,
+            barrierLabel: '',
+            context: context,
+            pageBuilder: (context, animation1, animation2) => Text('null'));
       } else {
         String str = _result[0]["label"];
 
