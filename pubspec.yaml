@@ -21,6 +21,10 @@ dependencies:
   open_file: ^3.2.1
   syncfusion_flutter_pdf: ^19.4.43-beta
 
+  http: ^0.13.4
+  flutter_spinkit: ^5.1.0
+  geolocator: ^8.2.0
+
 
 
 
@@ -43,6 +47,7 @@ flutter:
   assets:
     - assets/
     - assets/plantImages/
+    - images/
  
 
   
@@ -50,3 +55,6 @@ flutter:
     - family: Ubuntu-Regular
       fonts:
         - asset: fonts/Ubuntu-Regular.ttf
+    - family: SyneMono
+      fonts:
+        - asset: fonts/SyneMono-Regular.ttf

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:plant_disease_detection/main.dart';
 import 'package:plant_disease_detection/screens/diseases.dart';
+import 'package:plant_disease_detection/screens/loading_screen.dart';
 import 'package:plant_disease_detection/utilities/about.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -11,49 +12,47 @@ class MainDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          Container(
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 230.0,
-                  margin: EdgeInsets.only(
-                    top: 30,
-                  ),
-                  child: Image.asset(
-                    'assets/drawer.gif',
-                    fit: BoxFit.cover,
+          Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 230.0,
+                margin: EdgeInsets.only(
+                  top: 30,
+                ),
+                child: Image.asset(
+                  'assets/drawer.gif',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.redAccent,
+                  gradient: LinearGradient(
+                    colors: const [
+                      Colors.green,
+                      Colors.blue,
+                      Colors.purple,
+                    ],
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft,
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.redAccent,
-                    gradient: LinearGradient(
-                      colors: const [
-                        Colors.green,
-                        Colors.blue,
-                        Colors.purple,
-                      ],
-                      begin: Alignment.bottomRight,
-                      end: Alignment.topLeft,
-                    ),
+                height: 44.0,
+                width: double.infinity,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 7.0),
+                  child: Text(
+                    'Plant Disease Detection',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
                   ),
-                  height: 44.0,
-                  width: double.infinity,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 7.0),
-                    child: Text(
-                      'Plant Disease Detection',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
           ListTile(
               leading: Icon(
@@ -92,23 +91,43 @@ class MainDrawer extends StatelessWidget {
                     MaterialPageRoute(builder: (_) => Diseases()));
               }),
           ListTile(
-              leading: Icon(
-                Icons.app_settings_alt,
+            leading: Icon(
+              Icons.app_settings_alt,
+              color: Colors.green,
+            ),
+            title: Text(
+              'About Us',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
                 color: Colors.green,
               ),
-              title: Text(
-                'About Us',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.green,
-                ),
+            ),
+            onTap: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (_) => About(),
+              ));
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.cloud_circle_outlined,
+              color: Colors.green,
+            ),
+            title: Text(
+              'Weather Forecast',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
+                color: Colors.green,
               ),
-              onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (_) => About(),
-                ));
-              }),
+            ),
+            onTap: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (_) => LoadingScreen(),
+              ));
+            },
+          ),
           ListTile(
             leading: Icon(
               Icons.exit_to_app,
@@ -124,26 +143,27 @@ class MainDrawer extends StatelessWidget {
             ),
             onTap: () {
               showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text(
-                        'Exit App',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.red),
-                      ),
-                      content: Text('Do you really want to exit the app?'),
-                      actions: [
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).pop(true);
-                            },
-                            child: Text('No')),
-                        ElevatedButton(
-                            onPressed: () => exit(0), child: Text('Yes')),
-                      ],
-                    );
-                  });
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text(
+                      'Exit App',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red),
+                    ),
+                    content: Text('Do you really want to exit the app?'),
+                    actions: [
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(true);
+                          },
+                          child: Text('No')),
+                      ElevatedButton(
+                          onPressed: () => exit(0), child: Text('Yes')),
+                    ],
+                  );
+                },
+              );
             },
           ),
         ],

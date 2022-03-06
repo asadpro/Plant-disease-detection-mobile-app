@@ -88,43 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
       _result = res!;
 
       if (_result.isEmpty) {
-        //Legacy dialog show
-        // showDialog(
-        //   context: context,
-        //   builder: (BuildContext context) {
-        //     return AlertDialog(
-        //       title: IconButton(
-        //         icon: Icon(
-        //           Icons.warning,
-        //           color: Colors.yellow,
-        //         ),
-        //         iconSize: 55.0,
-        //         onPressed: () {},
-        //       ),
-        //       content: Text(
-        //         'File could not be uploaded due to  some technical issues !!. Please go back and pick the right image format.',
-        //         textAlign: TextAlign.center,
-        //         style: TextStyle(color: Colors.red),
-        //       ),
-        //       actions: [
-        //         Center(
-        //           child: TextButton.icon(
-        //             onPressed: () =>
-        //                 Navigator.pushNamed(context, AppRoutes.homePage),
-        //             icon: Icon(
-        //               Icons.arrow_back_ios_new_outlined,
-        //               size: 33.0,
-        //             ),
-        //             label: Text(
-        //               'Back Home',
-        //               style: TextStyle(fontWeight: FontWeight.bold),
-        //             ),
-        //           ),
-        //         )
-        //       ],
-        //     );
-        //   },
-        // );
         showGeneralDialog(
             barrierColor: Colors.black.withOpacity(0.5),
             transitionBuilder: (context, a1, a2, widget) {
@@ -133,39 +96,40 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Opacity(
                   opacity: a1.value,
                   child: AlertDialog(
-                      shape: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey, width: 2),
-                          borderRadius: BorderRadius.circular(16.0)),
-                      title: IconButton(
-                        icon: Icon(
-                          Icons.warning,
-                          color: Colors.yellow,
-                        ),
-                        iconSize: 55.0,
-                        onPressed: () {},
+                    shape: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey, width: 2),
+                        borderRadius: BorderRadius.circular(16.0)),
+                    title: IconButton(
+                      icon: Icon(
+                        Icons.warning,
+                        color: Colors.yellow,
                       ),
-                      content: Text(
-                        'File could not be uploaded due to  some technical issues !!. Please go back and pick the right image format.',
-                        style: TextStyle(color: Colors.red),
-                      ),
-                      actions: [
-                        Center(
-                          child: OutlinedButton.icon(
-                            style: OutlinedButton.styleFrom(
-                                padding: EdgeInsets.all(12)),
-                            onPressed: () => Navigator.pushNamed(
-                                context, AppRoutes.homePage),
-                            icon: Icon(
-                              Icons.keyboard_backspace_outlined,
-                              size: 33.0,
-                            ),
-                            label: Text(
-                              'Back Home',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                      iconSize: 55.0,
+                      onPressed: () {},
+                    ),
+                    content: Text(
+                      'File could not be uploaded due to  some technical issues !!. Please go back and pick the right image format.',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    actions: [
+                      Center(
+                        child: OutlinedButton.icon(
+                          style: OutlinedButton.styleFrom(
+                              padding: EdgeInsets.all(12)),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, AppRoutes.homePage),
+                          icon: Icon(
+                            Icons.keyboard_backspace_outlined,
+                            size: 33.0,
+                          ),
+                          label: Text(
+                            'Back Home',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
-                      ]),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },
