@@ -92,6 +92,25 @@ class MainDrawer extends StatelessWidget {
               }),
           ListTile(
             leading: Icon(
+              Icons.location_on_outlined,
+              color: Colors.green,
+            ),
+            title: Text(
+              'Weather Forecast',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
+                color: Colors.green,
+              ),
+            ),
+            onTap: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (_) => LoadingScreen(),
+              ));
+            },
+          ),
+          ListTile(
+            leading: Icon(
               Icons.app_settings_alt,
               color: Colors.green,
             ),
@@ -106,25 +125,6 @@ class MainDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (_) => About(),
-              ));
-            },
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.cloud_circle_outlined,
-              color: Colors.green,
-            ),
-            title: Text(
-              'Weather Forecast',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w900,
-                color: Colors.green,
-              ),
-            ),
-            onTap: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (_) => LoadingScreen(),
               ));
             },
           ),
