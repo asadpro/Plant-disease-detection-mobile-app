@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_disease_detection/routes/routes.dart';
 import 'package:plant_disease_detection/services/weather.dart';
 import 'package:plant_disease_detection/utilities/weather_constants.dart';
 
@@ -57,6 +58,17 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, AppRoutes.homePage);
+          },
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            size: 45,
+          ),
+        ),
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

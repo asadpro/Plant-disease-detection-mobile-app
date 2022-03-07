@@ -41,7 +41,7 @@ class _AboutState extends State<About> {
                 margin: EdgeInsets.zero,
                 child: FadeInImage(
                   placeholder: AssetImage('assets/wait.gif'),
-                  image: AssetImage('assets/saeed.jpg'),
+                  image: AssetImage('assets/saeed.jpeg'),
                 ),
               ),
             ),
@@ -225,7 +225,7 @@ class _AboutState extends State<About> {
                 margin: EdgeInsets.zero,
                 child: FadeInImage(
                   placeholder: AssetImage('assets/wait.gif'),
-                  image: AssetImage('assets/ilyas.jpg'),
+                  image: AssetImage('assets/ilyas.jpeg'),
                 ),
               ),
             ),
