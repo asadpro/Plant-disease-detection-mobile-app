@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:plant_disease_detection/routes/routes.dart';
 import 'package:plant_disease_detection/screens/location_screen.dart';
 import 'package:plant_disease_detection/services/weather.dart';
 
@@ -15,7 +16,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     getLocationData();
+
   }
+  
+  
 
 //Checking for permission of device's location service
 
@@ -23,13 +27,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
     WeatherModel weatherModel = WeatherModel();
     var weatherData = await weatherModel.getLocationWeather();
 
+    // Navigator.pushNamed(context, AppRoutes.locationScreen);
     Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => LocationScreen(
-                cityNewName: weatherData,
-              )),
-    );
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => LocationScreen(
+                  cityNewName: weatherData,
+                )));
   }
 
   @override

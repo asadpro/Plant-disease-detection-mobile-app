@@ -40,6 +40,7 @@ class _LocationScreenState extends State<LocationScreen> {
           cityName = '';
           humidity = 0;
           uvIndex = 0;
+          visibility = 0;
           return;
         }
         temperature = weatherData['main']['temp'];

@@ -1,6 +1,7 @@
 import 'package:plant_disease_detection/main.dart';
 import 'package:plant_disease_detection/screens/diseases.dart';
 import 'package:plant_disease_detection/screens/drawer.dart';
+import 'package:plant_disease_detection/screens/location_screen.dart';
 import 'package:plant_disease_detection/screens/result.dart';
 import 'package:plant_disease_detection/screens/splash_screen.dart';
 import 'package:plant_disease_detection/utilities/about.dart';
@@ -14,6 +15,7 @@ class AppRoutes {
   static const diseaseScreen = "/diseasescreen";
   static const diseaseImages = "/diseaseimages";
   static const drawer = "/drawer";
+  // static const locationScreen = "/locationScreen";
 
   static final appRoutes = {
     '/': (context) => SplashScreen(),
@@ -27,5 +29,8 @@ class AppRoutes {
           title: 'Plant disease detection',
         ),
     drawer: (context) => MainDrawer(),
+    // locationScreen: (context) => LocationScreen(
+    //       cityNewName: 'peshawar',
+    //     )
   };
 }

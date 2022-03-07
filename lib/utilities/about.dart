@@ -135,7 +135,7 @@ class _AboutState extends State<About> {
                 margin: EdgeInsets.zero,
                 child: FadeInImage(
                   placeholder: AssetImage('assets/wait.gif'),
-                  image: AssetImage('assets/salman.jpg'),
+                  image: AssetImage('assets/salman.jpeg'),
                 ),
               ),
             ),
@@ -164,7 +164,7 @@ class _AboutState extends State<About> {
                   ),
                   Text(
                     'I am a Mobile App Developer and Team Leader at BlueBit Technologies, in this My core competency lies in the complete end-to-end management and completing the entire project (iOS, Android and Backend side). I am seeking opportunities'
-                    'to build Mobile Apps from the ground up for you or your business.',
+                    ' to build Mobile Apps from the ground up for you or your business.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 18.0,
