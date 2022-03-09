@@ -168,7 +168,6 @@ class Info extends StatelessWidget {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (_) => MyHomePage(
-                  title: 'Plant disease detection',
                 ),
               ),
             );

@@ -33,11 +33,22 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      backgroundColor: Colors.green[300],
+      body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: const [
+                Colors.blue,
+                Colors.green,
+              ],
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+            ),
+          ),
           child: SpinKitWave(
-        color: Colors.white,
-        size: 80.0,
-      )),
+            color: Colors.white,
+            size: 100.0,
+          )),
     );
   }
 }

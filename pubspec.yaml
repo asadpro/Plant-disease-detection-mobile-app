@@ -56,6 +56,4 @@ flutter:
     - family: Ubuntu-Regular
       fonts:
         - asset: fonts/Ubuntu-Regular.ttf
-    - family: SyneMono
-      fonts:
-        - asset: fonts/SyneMono-Regular.ttf
+

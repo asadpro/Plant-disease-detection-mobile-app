@@ -31,26 +31,27 @@ const SizedBox sizedBox = SizedBox(
   height: 12.0,
 );
 
-
 //for weather constant
 
 const kTempTextStyle = TextStyle(
-  fontFamily: 'Spartan MB',
-  fontSize: 70.0,
+  fontFamily: 'Ubuntu-Regular',
+  fontSize: 90.0,
+  fontWeight: FontWeight.bold,
 );
 
 const kMessageTextStyle = TextStyle(
-  fontFamily: 'Spartan MB',
+  fontFamily: 'Ubuntu-Regular',
   fontSize: 40.0,
 );
 
 const kButtonTextStyle = TextStyle(
   fontSize: 30.0,
-  fontFamily: 'Spartan MB',
+  color: Colors.white,
+  fontFamily: 'Ubuntu-Regular',
 );
 
 const kConditionTextStyle = TextStyle(
-  fontSize: 70.0,
+  fontSize: 130.0,
 );
 
 const kTextFieldInputDecoration = InputDecoration(

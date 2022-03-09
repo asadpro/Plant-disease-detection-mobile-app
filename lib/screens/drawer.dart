@@ -10,13 +10,14 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.green,
       child: Column(
         children: [
           Column(
             children: [
               Container(
                 width: double.infinity,
-                height: 230.0,
+                height: 220.0,
                 margin: EdgeInsets.only(
                   top: 30,
                 ),
@@ -30,7 +31,6 @@ class MainDrawer extends StatelessWidget {
                   color: Colors.redAccent,
                   gradient: LinearGradient(
                     colors: const [
-                      Colors.green,
                       Colors.blue,
                       Colors.purple,
                     ],
@@ -55,77 +55,80 @@ class MainDrawer extends StatelessWidget {
             ],
           ),
           ListTile(
-              leading: Icon(
-                Icons.home,
-                color: Colors.green,
+            trailing: Icon(Icons.arrow_forward_ios_rounded),
+            leading: Icon(Icons.home, color: Colors.white),
+            title: Text(
+              'Home',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
               ),
-              title: Text(
-                'Home',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.green,
-                ),
-              ),
-              onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (_) => MyHomePage(
-                          title: 'Plant disease detection',
-                        )));
-              }),
+            ),
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (_) => MyHomePage()));
+            },
+          ),
+          Divider(
+            color: Colors.white30,
+          ),
           ListTile(
+              trailing: Icon(Icons.arrow_forward_ios_rounded),
               leading: Icon(
                 Icons.medical_services_outlined,
-                color: Colors.green,
+                color: Colors.white,
               ),
               title: Text(
                 'Disease information',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w900,
-                  color: Colors.green,
+                  color: Colors.white,
                 ),
               ),
               onTap: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (_) => Diseases()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => Diseases()));
               }),
+          Divider(
+            color: Colors.white30,
+          ),
           ListTile(
+            trailing: Icon(Icons.arrow_forward_ios_rounded),
             leading: Icon(
               Icons.location_on_outlined,
-              color: Colors.green,
+              color: Colors.white,
             ),
             title: Text(
               'Weather Forecast',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w900,
-                color: Colors.green,
+                color: Colors.white,
               ),
             ),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => LoadingScreen(),
               ));
-
-              // Navigator.pushReplacement(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (_) => LoadingScreen(),
-              //     ));
             },
           ),
+          Divider(
+            color: Colors.white30,
+          ),
           ListTile(
+            trailing: Icon(Icons.arrow_forward_ios_rounded),
             leading: Icon(
               Icons.app_settings_alt,
-              color: Colors.green,
+              color: Colors.white,
             ),
             title: Text(
               'About Us',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w900,
-                color: Colors.green,
+                color: Colors.white,
               ),
             ),
             onTap: () {
@@ -134,17 +137,21 @@ class MainDrawer extends StatelessWidget {
               ));
             },
           ),
+          Divider(
+            color: Colors.white30,
+          ),
           ListTile(
+            trailing: Icon(Icons.arrow_forward_ios_rounded),
             leading: Icon(
               Icons.exit_to_app,
-              color: Colors.green,
+              color: Colors.white,
             ),
             title: Text(
               'Exit',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w900,
-                color: Colors.green,
+                color: Colors.white,
               ),
             ),
             onTap: () {
@@ -171,6 +178,9 @@ class MainDrawer extends StatelessWidget {
                 },
               );
             },
+          ),
+          Divider(
+            color: Colors.white30,
           ),
         ],
       ),

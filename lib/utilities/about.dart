@@ -24,7 +24,6 @@ class _AboutState extends State<About> {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                   builder: (_) => MyHomePage(
-                    title: 'Plant disease detection',
                   ),
                 ),
               );

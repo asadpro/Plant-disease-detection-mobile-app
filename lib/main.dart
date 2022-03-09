@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
           titleTextStyle:
               TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold),
         ),
+        splashColor: Colors.purpleAccent,
         cardTheme: CardTheme(
           elevation: 13.0,
           shape: RoundedRectangleBorder(
@@ -44,8 +45,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const MyHomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -212,7 +214,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
           drawer: MainDrawer(),
           appBar: AppBar(
-            title: Text(widget.title),
+            title: Text("Plant disease detection"),
           ),
           body: Stack(
             children: [

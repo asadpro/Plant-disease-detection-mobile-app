@@ -14,22 +14,15 @@ class AppRoutes {
   static const diseaseScreen = "/diseasescreen";
   static const diseaseImages = "/diseaseimages";
   static const drawer = "/drawer";
-  // static const locationScreen = "/locationScreen";
 
   static final appRoutes = {
     '/': (context) => SplashScreen(),
-    secondScreen: (context) =>
-        const MyHomePage(title: 'Plant disease detection'),
+    secondScreen: (context) => const MyHomePage(),
     infoScreen: (context) => Info(),
     aboutScreen: (context) => About(),
     diseaseScreen: (context) => Diseases(),
     diseaseImages: (context) => DiseaseImages(),
-    homePage: (context) => MyHomePage(
-          title: 'Plant disease detection',
-        ),
+    homePage: (context) => MyHomePage(),
     drawer: (context) => MainDrawer(),
-    // locationScreen: (context) => LocationScreen(
-    //       cityNewName: 'peshawar',
-    //     )
   };
 }

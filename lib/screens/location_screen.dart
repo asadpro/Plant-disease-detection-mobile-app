@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plant_disease_detection/main.dart';
 import 'package:plant_disease_detection/routes/routes.dart';
 import 'package:plant_disease_detection/services/weather.dart';
-import 'package:plant_disease_detection/utilities/weather_constants.dart';
+import 'package:plant_disease_detection/utilities/constant.dart';
 
 class LocationScreen extends StatefulWidget {
   const LocationScreen({Key? key, this.cityNewName}) : super(key: key);
@@ -25,10 +26,11 @@ class _LocationScreenState extends State<LocationScreen> {
   late double temperature;
   late String weatherIcon;
   late String weatherMessage;
-  late String cityName;
   late int humidity;
   late num visibility;
   late num uvIndex;
+  late double wind;
+  late String sky;
 
   void updateUI(dynamic weatherData) {
     setState(
@@ -37,18 +39,21 @@ class _LocationScreenState extends State<LocationScreen> {
           temperature = 0;
           weatherIcon = 'Error';
           weatherMessage = 'Unable to get weather data';
-          cityName = '';
           humidity = 0;
           uvIndex = 0;
           visibility = 0;
+          wind = 0;
+          sky = '';
+
           return;
         }
         temperature = weatherData['main']['temp'];
         var condition = weatherData['weather'][0]['id'];
-        cityName = weatherData['name'];
         humidity = weatherData['main']['humidity'];
         visibility = weatherData['visibility'] / 1000;
+        wind = weatherData['wind']['speed'];
         uvIndex = weatherData['sys']['type'];
+        sky = weatherData['weather'][0]['description'];
 
         weatherIcon = weatherModel.getWeatherIcon(condition);
         weatherMessage = weatherModel.getMessage(temperature.toInt());
@@ -56,140 +61,204 @@ class _LocationScreenState extends State<LocationScreen> {
     );
   }
 
+  //Accessing currenct date format
+  var dt = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
+    print(dt.second);
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pushNamed(context, AppRoutes.homePage);
-          },
-          icon: Icon(
-            Icons.arrow_back_rounded,
-            size: 45,
-          ),
-        ),
-      ),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/location_background.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        constraints: BoxConstraints.expand(),
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 30),
-                child: Container(
-                  height: 350.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.grey.withOpacity(0.4),
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 1.0,
-                    ),
+        padding: EdgeInsets.fromLTRB(10, 25, 10, 0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.6),
+                    spreadRadius: 8,
+                    blurRadius: 6,
+                    offset: Offset(0, 8),
                   ),
-                  child: Padding(
+                ],
+                borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(64), top: Radius.circular(23)),
+                color: Colors.redAccent,
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.lightBlue,
+                    Colors.lightBlueAccent,
+                    Colors.blue.shade700,
+                  ],
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                ),
+              ),
+              height: 600,
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '${temperature.toInt()}°C',
-                              style: TextStyle(
-                                  fontSize: 50.0, fontWeight: FontWeight.bold),
+                        TextButton(
+                          onPressed: () => Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MyHomePage()),
+                              (route) => false),
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
+                          style: ButtonStyle(
+                              shape:
+                                  MaterialStateProperty.all(const CircleBorder(
+                            side: BorderSide(color: Colors.white),
+                          ))),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 0),
+                          child: TextButton.icon(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.location_on_sharp,
+                              color: Colors.amberAccent,
+                              size: 35,
                             ),
-                            Text.rich(
-                              TextSpan(
-                                style: TextStyle(
-                                  fontSize: 27,
-                                  fontFamily: 'SyneMono',
-                                ),
-                                children: const [
-                                  WidgetSpan(
-                                    child: Icon(
-                                      Icons.location_on_outlined,
-                                      color: Colors.amber,
-                                      size: 40,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'Peshawar',
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        Text(
-                          cityName,
-                          style: kTempTextStyle,
-                        ),
-                        Text(
-                          weatherIcon,
-                          style: kConditionTextStyle,
+                            label: Text(
+                              'Peshawar',
+                              style: kButtonTextStyle,
+                            ),
+                          ),
                         ),
                       ],
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.grey.withOpacity(0.4),
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 1.0,
+                  Text(
+                    weatherIcon,
+                    style: kConditionTextStyle,
+                  ),
+                  Text(
+                    '${temperature.toInt()}°C',
+                    style: kTempTextStyle,
+                  ),
+                  Text(
+                    sky.replaceFirst(sky[0], sky[0].toUpperCase()),
+                    style: kMessageTextStyle,
+                  ),
+                  SizedBox(
+                    height: 80.0,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xff6f52ff),
+                          spreadRadius: 15,
+                          blurRadius: 5,
+                        ),
+                      ],
+                    ),
+                    child: Text(
+                      '\u{1F4C5}   ${dt.day} - ${dt.month} - ${dt.year}',
+                      style: kBoxTextTitle,
                     ),
                   ),
-                  height: 110.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                ],
+              ),
+            ),
+            // =============================================
+            // =============================================
+            // =============================================
+            // =============================================
+
+            Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.6),
+                    spreadRadius: 6,
+                    blurRadius: 15,
+                  ),
+                ],
+                borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(12), top: Radius.circular(64)),
+                color: Colors.redAccent,
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.lightBlue,
+                    Colors.lightBlueAccent,
+                    Colors.blue.shade700,
+                  ],
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                ),
+              ),
+              height: 150.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Icon(Icons.air_outlined),
                       Text(
-                        '$humidity%\nHumidity',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16.0),
-                        textAlign: TextAlign.center,
+                        '${wind}km/h',
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        '$visibility Km\nVisibility',
+                        'Wind',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16.0),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        'Low $uvIndex\nUVindex',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16.0),
-                        textAlign: TextAlign.center,
-                      ),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white54,
+                        ),
+                      )
                     ],
                   ),
-                ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.opacity_outlined),
+                      Text(
+                        '$humidity%',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'Humidity',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white54,
+                        ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.storm_outlined),
+                      Text(
+                        '$visibility',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'Visibility',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white54,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 15.0),
-                child: Text(
-                  '$weatherMessage in $cityName',
-                  textAlign: TextAlign.left,
-                  style: kMessageTextStyle,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
