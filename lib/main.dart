@@ -5,6 +5,7 @@ import 'package:plant_disease_detection/routes/routes.dart';
 import 'package:plant_disease_detection/screens/drawer.dart';
 import 'package:tflite/tflite.dart';
 import 'package:vector_math/vector_math.dart' as math;
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(MyApp());
@@ -187,87 +188,105 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   DateTime timeBackPress = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     final Object? rcvdData = ModalRoute.of(context)!.settings.arguments;
 
-    return Scaffold(
-        drawer: MainDrawer(),
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/background.gif'),
-                    fit: BoxFit.cover),
+    return WillPopScope(
+      onWillPop: () async {
+        final difference = DateTime.now().difference(timeBackPress);
+        final isExitWarning = difference >= Duration(seconds: 2);
+        timeBackPress = DateTime.now();
+        if (isExitWarning) {
+          final message = 'Press back again to exit';
+          Fluttertoast.showToast(
+              msg: message, fontSize: 24, backgroundColor: Colors.red);
+
+          return false;
+        } else {
+          Fluttertoast.cancel();
+          return true;
+        }
+      },
+      child: Scaffold(
+          drawer: MainDrawer(),
+          appBar: AppBar(
+            title: Text(widget.title),
+          ),
+          body: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/background.gif'),
+                      fit: BoxFit.cover),
+                ),
               ),
-            ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Select Image',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 3, 248, 12),
-                        fontSize: 38.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton.icon(
-                        icon: Icon(
-                          Icons.photo_camera,
-                          size: 40.0,
-                          color: Colors.orangeAccent,
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Select Image',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 3, 248, 12),
+                          fontSize: 38.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton.icon(
+                          icon: Icon(
+                            Icons.photo_camera,
+                            size: 40.0,
+                            color: Colors.orangeAccent,
+                          ),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                Color.fromARGB(255, 73, 182, 118)),
+                            foregroundColor:
+                                MaterialStateProperty.all(Colors.white),
+                          ),
+                          label: Text('Camera'),
+                          onPressed: () {
+                            getCamera();
+                          },
                         ),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              Color.fromARGB(255, 73, 182, 118)),
-                          foregroundColor:
-                              MaterialStateProperty.all(Colors.white),
+                        SizedBox(
+                          width: 35.0,
                         ),
-                        label: Text('Camera'),
-                        onPressed: () {
-                          getCamera();
-                        },
-                      ),
-                      SizedBox(
-                        width: 35.0,
-                      ),
-                      TextButton.icon(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              Color.fromARGB(255, 73, 182, 118)),
-                          foregroundColor:
-                              MaterialStateProperty.all(Colors.white),
+                        TextButton.icon(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                Color.fromARGB(255, 73, 182, 118)),
+                            foregroundColor:
+                                MaterialStateProperty.all(Colors.white),
+                          ),
+                          onPressed: () {
+                            getImage();
+                          },
+                          icon: Icon(
+                            Icons.image,
+                            size: 40.0,
+                            color: Colors.orangeAccent,
+                          ),
+                          label: Text('Gallery '),
                         ),
-                        onPressed: () {
-                          getImage();
-                        },
-                        icon: Icon(
-                          Icons.image,
-                          size: 40.0,
-                          color: Colors.orangeAccent,
-                        ),
-                        label: Text('Gallery '),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                ],
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ));
+            ],
+          )),
+    );
   }
 }

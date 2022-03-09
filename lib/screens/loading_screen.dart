@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:plant_disease_detection/routes/routes.dart';
 import 'package:plant_disease_detection/screens/location_screen.dart';
 import 'package:plant_disease_detection/services/weather.dart';
 

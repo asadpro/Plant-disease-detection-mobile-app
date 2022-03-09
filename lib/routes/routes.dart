@@ -1,7 +1,6 @@
 import 'package:plant_disease_detection/main.dart';
 import 'package:plant_disease_detection/screens/diseases.dart';
 import 'package:plant_disease_detection/screens/drawer.dart';
-import 'package:plant_disease_detection/screens/location_screen.dart';
 import 'package:plant_disease_detection/screens/result.dart';
 import 'package:plant_disease_detection/screens/splash_screen.dart';
 import 'package:plant_disease_detection/utilities/about.dart';
