@@ -15,10 +15,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     getLocationData();
-
   }
-  
-  
 
 //Checking for permission of device's location service
 
@@ -26,13 +23,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
     WeatherModel weatherModel = WeatherModel();
     var weatherData = await weatherModel.getLocationWeather();
 
-    // Navigator.pushNamed(context, AppRoutes.locationScreen);
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => LocationScreen(
-                  cityNewName: weatherData,
-                )));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (_) => LocationScreen(
+        cityNewName: weatherData,
+      ),
+    ));
   }
 
   @override

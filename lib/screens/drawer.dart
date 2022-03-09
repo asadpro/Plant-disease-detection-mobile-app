@@ -104,9 +104,15 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
+              Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => LoadingScreen(),
               ));
+
+              // Navigator.pushReplacement(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (_) => LoadingScreen(),
+              //     ));
             },
           ),
           ListTile(
