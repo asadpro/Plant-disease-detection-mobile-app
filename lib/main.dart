@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(brightness: Brightness.dark),
         appBarTheme: AppBarTheme(
           color: Colors.green,
+          centerTitle: true,
           titleTextStyle:
               TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold),
         ),
@@ -111,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {},
                     ),
                     content: Text(
-                      'File could not be uploaded due to  some technical issues !!. Please go back and pick the right image format.',
+                      'File could not be uploaded due to  the wrong format of image !!. Please go back and pick the image again.',
                       style: TextStyle(color: Colors.red),
                     ),
                     actions: [
