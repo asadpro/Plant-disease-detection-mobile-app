@@ -109,9 +109,11 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => LoadingScreen(),
-              ));
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => LoadingScreen(),
+                ),
+              );
             },
           ),
           Divider(
@@ -132,9 +134,11 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (_) => About(),
-              ));
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => About(),
+                ),
+              );
             },
           ),
           Divider(

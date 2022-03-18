@@ -17,7 +17,7 @@ dependencies:
   url_launcher: ^6.0.17
   path_provider: any
   path: any
-  camera: ^0.9.4+5
+  camera: ^0.9.4+16
   open_file: ^3.2.1
   syncfusion_flutter_pdf: ^19.4.43-beta
 

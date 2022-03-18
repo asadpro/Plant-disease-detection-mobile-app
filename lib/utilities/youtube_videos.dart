@@ -1,8 +1,9 @@
 class DiseaseVideo {
   final disease = {
     "Tomato healthy":
-        "https://www.youtube.com/watch?v=9w-7RoH uic&ab channel=NextLevelGardening",
-    "Tomato Septoria leaf spot": "https://www.youtube.com/watch?v=iyBMystw rs",
+        "https://www.youtube.com/watch?v=tPAXxcn5vaE&ab_channel=TheRightGardening",
+    "Tomato Septoria leaf spot":
+        "https://www.youtube.com/watch?v=bDQ0ZEYNTNc&ab_channel=HeirloomReviews",
     "Tomato Tomato mosaic virus": "https://www.youtube.com/watch?v=mvZ8lnaNCCM",
     "Tomato Bacterial spot": "https://www.youtube.com/watch?v=jYFLMM6NcdE",
     "Potato Late blight": "https://www.youtube.com/watch?v=jANKhuBXvqk",

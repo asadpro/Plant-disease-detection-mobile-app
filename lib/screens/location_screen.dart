@@ -67,8 +67,8 @@ class _LocationScreenState extends State<LocationScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          padding: EdgeInsets.fromLTRB(10, 25, 10, 0),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -114,8 +114,8 @@ class _LocationScreenState extends State<LocationScreen> {
                               color: Colors.white,
                             ),
                             style: ButtonStyle(
-                                shape:
-                                    MaterialStateProperty.all(const CircleBorder(
+                                shape: MaterialStateProperty.all(
+                                    const CircleBorder(
                               side: BorderSide(color: Colors.white),
                             ))),
                           ),
@@ -156,7 +156,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30.0),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Color(0xff6f52ff),
                             spreadRadius: 15,
@@ -172,84 +172,86 @@ class _LocationScreenState extends State<LocationScreen> {
                   ],
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.blue.withOpacity(0.6),
-                      spreadRadius: 6,
-                      blurRadius: 15,
-                    ),
-                  ],
-                  borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(12), top: Radius.circular(64)),
-                  color: Colors.redAccent,
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.lightBlue,
-                      Colors.lightBlueAccent,
-                      Colors.blue.shade700,
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.blue.withOpacity(0.6),
+                        spreadRadius: 6,
+                        blurRadius: 15,
+                      ),
                     ],
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
+                    borderRadius: BorderRadius.vertical(
+                        bottom: Radius.circular(12), top: Radius.circular(64)),
+                    color: Colors.redAccent,
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.lightBlue,
+                        Colors.lightBlueAccent,
+                        Colors.blue.shade700,
+                      ],
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                    ),
                   ),
-                ),
-                height: 150.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.air_outlined),
-                        Text(
-                          '${wind}km/h',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'Wind',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white54,
+                  height: 150.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.air_outlined),
+                          Text(
+                            '${wind}km/h',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.opacity_outlined),
-                        Text(
-                          '$humidity%',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'Humidity',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white54,
+                          Text(
+                            'Wind',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white54,
+                            ),
+                          )
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.opacity_outlined),
+                          Text(
+                            '$humidity%',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.storm_outlined),
-                        Text(
-                          '$visibility',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'Visibility',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white54,
+                          Text(
+                            'Humidity',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white54,
+                            ),
+                          )
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.storm_outlined),
+                          Text(
+                            '$visibility',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        )
-                      ],
-                    ),
-                  ],
+                          Text(
+                            'Visibility',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white54,
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

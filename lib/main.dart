@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:plant_disease_detection/routes/routes.dart';
 import 'package:plant_disease_detection/screens/drawer.dart';
+import 'package:plant_disease_detection/utilities/constant.dart';
 import 'package:tflite/tflite.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:fluttertoast/fluttertoast.dart';
@@ -100,35 +101,58 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Opacity(
                   opacity: a1.value,
                   child: AlertDialog(
+                    insetPadding: EdgeInsets.zero,
+                    backgroundColor: Colors.white,
                     shape: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey, width: 2),
                         borderRadius: BorderRadius.circular(16.0)),
-                    title: IconButton(
-                      icon: Icon(
-                        Icons.warning,
-                        color: Colors.yellow,
-                      ),
-                      iconSize: 55.0,
-                      onPressed: () {},
-                    ),
+                    title: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: Colors.red,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            IconButton(
+                              icon: Icon(
+                                Icons.warning,
+                                color: Colors.yellow,
+                              ),
+                              iconSize: 55.0,
+                              onPressed: () {},
+                            ),
+                            Text(
+                              'ALERT....!!!',
+                              style: kTitleText,
+                            )
+                          ],
+                        )),
                     content: Text(
-                      'File could not be uploaded due to  the wrong format of image !!. Please go back and pick the image again.',
-                      style: TextStyle(color: Colors.red),
+                      'File could not be uploaded due to  the wrong format of image !!! Please go back and pick the image again.',
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
+                      textAlign: TextAlign.justify,
                     ),
                     actions: [
                       Center(
                         child: OutlinedButton.icon(
                           style: OutlinedButton.styleFrom(
+                              backgroundColor: Colors.red,
                               padding: EdgeInsets.all(12)),
                           onPressed: () =>
                               Navigator.pushNamed(context, AppRoutes.homePage),
                           icon: Icon(
-                            Icons.keyboard_backspace_outlined,
+                            Icons.insert_photo_outlined,
                             size: 33.0,
+                            color: Colors.yellow,
                           ),
                           label: Text(
                             'Back Home',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
                           ),
                         ),
                       ),
@@ -202,7 +226,7 @@ class _MyHomePageState extends State<MyHomePage> {
         final isExitWarning = difference >= Duration(seconds: 2);
         timeBackPress = DateTime.now();
         if (isExitWarning) {
-          final message = 'Press back again to exit';
+          const message = 'Press back again to exit';
           Fluttertoast.showToast(
               msg: message, fontSize: 24, backgroundColor: Colors.red);
 

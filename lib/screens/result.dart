@@ -167,8 +167,7 @@ class Info extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (_) => MyHomePage(
-                ),
+                builder: (_) => MyHomePage(),
               ),
             );
           },
