@@ -23,8 +23,7 @@ class _AboutState extends State<About> {
             onTap: () {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (_) => MyHomePage(
-                  ),
+                  builder: (_) => MyHomePage(),
                 ),
               );
             },
@@ -36,8 +35,9 @@ class _AboutState extends State<About> {
         child: Column(
           children: [
             InteractiveViewer(
-              child: Card(
-                margin: EdgeInsets.zero,
+              child: Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(44)),
                 child: FadeInImage(
                   placeholder: AssetImage('assets/wait.gif'),
                   image: AssetImage('assets/saeed.jpeg'),

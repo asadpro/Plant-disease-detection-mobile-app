@@ -163,12 +163,16 @@ class MainDrawer extends StatelessWidget {
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
+                    backgroundColor: Colors.white,
                     title: Text(
                       'Exit App',
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.red),
                     ),
-                    content: Text('Do you really want to exit the app?'),
+                    content: Text(
+                      'Do you really want to exit the app?',
+                      style: TextStyle(color: Colors.black),
+                    ),
                     actions: [
                       ElevatedButton(
                           onPressed: () {

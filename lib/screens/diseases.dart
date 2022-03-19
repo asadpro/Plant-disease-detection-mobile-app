@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:plant_disease_detection/utilities/helper.dart';
 import 'package:plant_disease_detection/routes/routes.dart';
 import 'package:plant_disease_detection/utilities/plant_container.dart';
 
@@ -9,32 +8,35 @@ class Diseases extends StatefulWidget {
 }
 
 class _DiseasesState extends State<Diseases> {
+  Map saeed = {
+    'path': 'assets/plantImages/1.jpg',
+    'name': 'Pepper bell Bacterial spot'
+  };
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pushNamed(context, AppRoutes.homePage),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pushNamed(context, AppRoutes.homePage),
+          ),
+          title: Text('Diseases'),
+          centerTitle: true,
         ),
-        title: Text('Diseases'),
-        centerTitle: true,
-      ),
-      body: Scrollbar(
-        interactive: true,
-        isAlwaysShown: true,
-        thickness: 12.0,
-        radius: Radius.circular(12.0),
-        showTrackOnHover: true,
-        child: SingleChildScrollView(
-          child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // box 1
+        body: CustomScrollView(
+          primary: true,
+          slivers: <Widget>[
+            SliverPadding(
+              padding: const EdgeInsets.all(12),
+              sliver: SliverGrid.count(
+                childAspectRatio: 1 / 1.4,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: 2,
+                children: <Widget>[
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/1.jpg',
                     plantName: 'Pepper Bell Bacterial Spot',
                     onPress: () {
                       Map saeed = {
@@ -45,11 +47,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-
-                  SizedBox(height: screenHeight(context) * 0.03),
-
-                  // box 2
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/2.jpg',
                     plantName: 'Pepper Bell Healthy',
                     onPress: () {
                       Map saeed = {
@@ -60,11 +59,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-
-                  SizedBox(height: screenHeight(context) * 0.03),
-
-                  // box 3
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/3.jpg',
                     plantName: 'Potato Early Blight',
                     onPress: () {
                       Map saeed = {
@@ -75,11 +71,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-
-                  SizedBox(height: screenHeight(context) * 0.03),
-
-                  // box 4
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/4.jpg',
                     plantName: 'Potato Healthy',
                     onPress: () {
                       Map saeed = {
@@ -90,9 +83,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-                  SizedBox(height: screenHeight(context) * 0.03),
-                  // box 5
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/5.jpg',
                     plantName: 'Potato Late Blight',
                     onPress: () {
                       Map saeed = {
@@ -103,9 +95,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-                  SizedBox(height: screenHeight(context) * 0.03),
-                  // box 6
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/6.jpg',
                     plantName: 'Tomato Target Spot',
                     onPress: () {
                       Map saeed = {
@@ -116,9 +107,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-                  SizedBox(height: screenHeight(context) * 0.03),
-                  // box 7
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/7.jpg',
                     plantName: 'Tomato Mosaic Virus',
                     onPress: () {
                       Map saeed = {
@@ -129,9 +119,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-                  SizedBox(height: screenHeight(context) * 0.03),
-                  // box 8
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/8.jpg',
                     plantName: 'Tomato Yellow\n Leaf Curl Virus',
                     onPress: () {
                       Map saeed = {
@@ -142,9 +131,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-                  SizedBox(height: screenHeight(context) * 0.03),
-                  // box 9
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/9.jpg',
                     plantName: 'Tomato Bacterial Spot',
                     onPress: () {
                       Map saeed = {
@@ -155,9 +143,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-                  SizedBox(height: screenHeight(context) * 0.03),
-                  // box 10
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/10.jpg',
                     plantName: 'Tomato Early Blight',
                     onPress: () {
                       Map saeed = {
@@ -168,9 +155,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-                  SizedBox(height: screenHeight(context) * 0.03),
-                  // box 11
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/11.jpg',
                     plantName: 'Tomato Healthy',
                     onPress: () {
                       Map saeed = {
@@ -181,9 +167,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-                  SizedBox(height: screenHeight(context) * 0.03),
-                  // box 12
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/12.jpg',
                     plantName: 'Tomato Late Blight',
                     onPress: () {
                       Map saeed = {
@@ -194,10 +179,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-
-                  SizedBox(height: screenHeight(context) * 0.03),
-                  // box 13
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/13.jpg',
                     plantName: 'Tomato Leaf Mold',
                     onPress: () {
                       Map saeed = {
@@ -208,10 +191,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-
-                  SizedBox(height: screenHeight(context) * 0.03),
-                  // box 14
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/14.jpg',
                     plantName: 'Tomato Septoria Leaf Spot',
                     onPress: () {
                       Map saeed = {
@@ -222,10 +203,8 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-                  SizedBox(height: screenHeight(context) * 0.03),
-
-                  // box 14
                   PlantContainer(
+                    imageAddress: 'assets/plantImages/15.jpg',
                     plantName: 'Tomato Spider Mites\nTwo-potted Spider Mite',
                     onPress: () {
                       Map saeed = {
@@ -236,12 +215,10 @@ class _DiseasesState extends State<Diseases> {
                           arguments: saeed);
                     },
                   ),
-
-                  SizedBox(height: screenHeight(context) * 0.03),
                 ],
               ),
             ),
-          ]),
+          ],
         ),
       ),
     );
