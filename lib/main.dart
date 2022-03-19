@@ -55,7 +55,12 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation animation;
+  late Animation borderShape;
+
   File? selectedImage;
   String? message = '';
 
@@ -72,6 +77,41 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     loadMyModel();
+
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+    animation =
+        ColorTween(begin: Colors.blue, end: Colors.green).animate(controller);
+
+    borderShape = ShapeBorderTween(
+      begin: BeveledRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      end: BeveledRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+      ),
+    ).animate(controller);
+
+    controller.forward();
+
+    controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller.reverse(from: 1.0);
+      } else if (status == AnimationStatus.dismissed) {
+        controller.forward(from: 0.0);
+      }
+    });
+    controller.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   late List _result;
@@ -240,6 +280,7 @@ class _MyHomePageState extends State<MyHomePage> {
           drawer: MainDrawer(),
           appBar: AppBar(
             title: Text("Plant disease detection"),
+            backgroundColor: animation.value,
           ),
           body: Stack(
             children: [
@@ -273,12 +314,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             size: 40.0,
                             color: Colors.orangeAccent,
                           ),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                Color.fromARGB(255, 73, 182, 118)),
-                            foregroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                          ),
+                          style: TextButton.styleFrom(
+                              shape: borderShape.value,
+                              primary: Colors.white,
+                              backgroundColor: animation.value),
                           label: Text('Camera'),
                           onPressed: () {
                             getCamera();
@@ -288,12 +327,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: 35.0,
                         ),
                         TextButton.icon(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                Color.fromARGB(255, 73, 182, 118)),
-                            foregroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                          ),
+                          style: TextButton.styleFrom(
+                              shape: borderShape.value,
+                              primary: Colors.white,
+                              backgroundColor: animation.value),
                           onPressed: () {
                             getImage();
                           },

@@ -17,9 +17,10 @@ dependencies:
   url_launcher: ^6.0.17
   path_provider: any
   path: any
-  camera: ^0.9.4+16
+  # camera: ^0.9.4+16
   open_file: ^3.2.1
   syncfusion_flutter_pdf: ^19.4.43-beta
+
 
   http: ^0.13.4
   flutter_spinkit: ^5.1.0
@@ -32,7 +33,7 @@ dependencies:
   flutter_signin_button: ^2.0.0
   fluttertoast: ^8.0.9
   flutter_offline: ^2.1.0
-
+  animated_text_kit: ^4.2.1
 
 dev_dependencies:
   flutter_test:
