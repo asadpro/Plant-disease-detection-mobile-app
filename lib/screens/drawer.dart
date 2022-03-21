@@ -39,7 +39,7 @@ class MainDrawer extends StatelessWidget {
                     end: Alignment.topLeft,
                   ),
                 ),
-                height: 34.0,
+                height: 44.0,
                 width: double.infinity,
                 child: Padding(
                   padding:
@@ -47,7 +47,7 @@ class MainDrawer extends StatelessWidget {
                   child: DefaultTextStyle(
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      fontSize: 22.0,
+                      fontSize: 17.0,
                       fontWeight: FontWeight.bold,
                     ),
                     child: AnimatedTextKit(

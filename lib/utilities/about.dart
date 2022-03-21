@@ -379,11 +379,7 @@ class _AboutState extends State<About> {
                     FloatingActionButton(
                         backgroundColor: Color.fromARGB(255, 163, 81, 240),
                         onPressed: () {
-                          final page = controller.currentPage + 1;
-                          controller.animateToPage(
-                            page: page > 4 ? 0 : page,
-                            duration: 400,
-                          );
+                          controller.jumpToPage(page: 2);
                         },
                         child: Icon(Icons.skip_next_outlined)),
                     FloatingActionButton(

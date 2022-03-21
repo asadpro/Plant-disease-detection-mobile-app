@@ -169,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage>
                           ],
                         )),
                     content: Text(
-                      'File could not be uploaded due to  the wrong format of image !!! Please go back and pick the image again.',
+                      'File could not be uploaded due to  the wrong format/wrong image !!! Please go back and pick the image again.',
                       style: TextStyle(
                         color: Colors.red,
                       ),
@@ -180,6 +180,8 @@ class _MyHomePageState extends State<MyHomePage>
                         child: OutlinedButton.icon(
                           style: OutlinedButton.styleFrom(
                               backgroundColor: Colors.red,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18)),
                               padding: EdgeInsets.all(12)),
                           onPressed: () =>
                               Navigator.pushNamed(context, AppRoutes.homePage),
