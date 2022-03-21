@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage>
   String name = "";
   String numbers = "";
 
-  predict(File file) async {
+  Future<dynamic> predict(File file) async {
     var res = await Tflite.runModelOnImage(
       path: file.path,
       numResults: 15,
@@ -129,7 +129,6 @@ class _MyHomePageState extends State<MyHomePage>
     );
 
     String imagePath = file.path;
-    print('result is null asad asad asad:::::::$res');
 
     setState(() {
       _result = res!;
@@ -230,6 +229,7 @@ class _MyHomePageState extends State<MyHomePage>
 
     try {
       selectedImage = File(pickedImage!.path);
+
       setState(
         () {
           predict(selectedImage!);
@@ -243,8 +243,10 @@ class _MyHomePageState extends State<MyHomePage>
 //created by me
   Future getCamera() async {
     final takeImage = await ImagePicker().pickImage(source: ImageSource.camera);
+
     try {
       selectedImage = File(takeImage!.path);
+
       setState(
         () {
           predict(selectedImage!);
@@ -267,9 +269,12 @@ class _MyHomePageState extends State<MyHomePage>
         final isExitWarning = difference >= Duration(seconds: 2);
         timeBackPress = DateTime.now();
         if (isExitWarning) {
-          const message = 'Press back again to exit';
+          const message = 'Press back button again to exit';
           Fluttertoast.showToast(
-              msg: message, fontSize: 24, backgroundColor: Colors.red);
+            msg: message,
+            fontSize: 14,
+            backgroundColor: Colors.red,
+          );
 
           return false;
         } else {
@@ -316,6 +321,8 @@ class _MyHomePageState extends State<MyHomePage>
                             color: Colors.orangeAccent,
                           ),
                           style: TextButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 26, vertical: 15.0),
                               shape: borderShape.value,
                               primary: Colors.white,
                               backgroundColor: animation.value),
@@ -329,6 +336,8 @@ class _MyHomePageState extends State<MyHomePage>
                         ),
                         TextButton.icon(
                           style: TextButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 26, vertical: 15.0),
                               shape: borderShape.value,
                               primary: Colors.white,
                               backgroundColor: animation.value),

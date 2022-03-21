@@ -30,9 +30,7 @@ class _DiseasesState extends State<Diseases> {
             SliverPadding(
               padding: const EdgeInsets.all(12),
               sliver: SliverGrid.count(
-                childAspectRatio: 1 / 1.4,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+                childAspectRatio: 1 / 1.5,
                 crossAxisCount: 2,
                 children: <Widget>[
                   PlantContainer(
