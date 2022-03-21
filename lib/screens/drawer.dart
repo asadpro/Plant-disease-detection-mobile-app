@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:plant_disease_detection/main.dart';
 import 'package:plant_disease_detection/screens/diseases.dart';
@@ -38,17 +39,25 @@ class MainDrawer extends StatelessWidget {
                     end: Alignment.topLeft,
                   ),
                 ),
-                height: 44.0,
+                height: 34.0,
                 width: double.infinity,
                 child: Padding(
-                  padding: EdgeInsets.only(top: 7.0),
-                  child: Text(
-                    'Plant Disease Detection',
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                  child: DefaultTextStyle(
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    child: AnimatedTextKit(
+                      repeatForever: true,
+                      animatedTexts: [
+                        FadeAnimatedText('PLANT'),
+                        FadeAnimatedText('PLANT DISEASE'),
+                        FadeAnimatedText('PLANT DISEASE DETECTION'),
+                      ],
+                    ),
                   ),
                 ),
               )
