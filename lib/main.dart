@@ -121,20 +121,20 @@ class _MyHomePageState extends State<MyHomePage>
   String name = "";
   String numbers = "";
 
-  predict(File file) async {
+  Future<dynamic> predict(File file) async {
     var res = await Tflite.runModelOnImage(
-        path: file.path,
-        numResults: 15,
-        threshold: 0.5,
-        imageMean: 127.5,
-        imageStd: 127.5);
+      path: file.path,
+      numResults: 15,
+      threshold: 0.5,
+      imageMean: 127.5,
+      imageStd: 127.5,
+    );
 
     String imagePath = file.path;
 
     setState(() {
       _result = res!;
-
-      if (_result.isEmpty) {
+      if (_result.isEmpty || _result[0]['label'] == '  Tomato Late blight') {
         showGeneralDialog(
             barrierColor: Colors.black.withOpacity(0.5),
             transitionBuilder: (context, a1, a2, widget) {
@@ -231,6 +231,7 @@ class _MyHomePageState extends State<MyHomePage>
 
     try {
       selectedImage = File(pickedImage!.path);
+
       setState(
         () {
           predict(selectedImage!);
@@ -244,8 +245,10 @@ class _MyHomePageState extends State<MyHomePage>
 //created by me
   Future getCamera() async {
     final takeImage = await ImagePicker().pickImage(source: ImageSource.camera);
+
     try {
       selectedImage = File(takeImage!.path);
+
       setState(
         () {
           predict(selectedImage!);
@@ -280,9 +283,12 @@ class _MyHomePageState extends State<MyHomePage>
         final isExitWarning = difference >= Duration(seconds: 2);
         timeBackPress = DateTime.now();
         if (isExitWarning) {
-          const message = 'Press back again to exit';
+          const message = 'Press back button again to exit';
           Fluttertoast.showToast(
-              msg: message, fontSize: 24, backgroundColor: Colors.red);
+            msg: message,
+            fontSize: 14,
+            backgroundColor: Colors.red,
+          );
 
           return false;
         } else {
@@ -333,8 +339,12 @@ class _MyHomePageState extends State<MyHomePage>
                             color: Colors.orangeAccent,
                           ),
                           style: TextButton.styleFrom(
-                              minimumSize: Size(150, 70),
-                              maximumSize: Size(155, 75),
+<<<<<<< HEAD
+                           
+=======
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 26, vertical: 15.0),
+>>>>>>> salman
                               shape: borderShape.value,
                               primary: Colors.white,
                               backgroundColor: animation.value),
@@ -348,8 +358,12 @@ class _MyHomePageState extends State<MyHomePage>
                         ),
                         TextButton.icon(
                           style: TextButton.styleFrom(
-                              minimumSize: Size(150, 70),
-                              maximumSize: Size(155, 75),
+<<<<<<< HEAD
+                              
+=======
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 26, vertical: 15.0),
+>>>>>>> salman
                               shape: borderShape.value,
                               primary: Colors.white,
                               backgroundColor: animation.value),

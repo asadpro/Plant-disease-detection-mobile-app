@@ -14,21 +14,23 @@ class PlantContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPress,
-      child: GridTile(
-        child: Image.asset(
-          imageAddress,
-          fit: BoxFit.cover,
+      child: Card(
+        child: GridTile(
+          child: Image.asset(
+            imageAddress,
+            fit: BoxFit.cover,
+          ),
+          footer: GridTileBar(
+              title: Text(
+                plantName,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                textScaleFactor: 1.2,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              backgroundColor: Color.fromARGB(255, 139, 80, 216)),
         ),
-        footer: GridTileBar(
-            title: Text(
-              plantName,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              textScaleFactor: 1.2,
-              style: TextStyle(fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            backgroundColor: Colors.black),
       ),
     );
   }
