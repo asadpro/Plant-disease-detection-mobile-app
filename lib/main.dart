@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:plant_disease_detection/routes/routes.dart';
@@ -112,7 +111,6 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void dispose() {
     controller.dispose();
-
     super.dispose();
   }
 
@@ -263,18 +261,6 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
-    //Animated select image header
-    const colorizeColors = [
-      Colors.purple,
-      Colors.blue,
-      Colors.yellow,
-      Colors.red,
-    ];
-    const colorizeTextStyle = TextStyle(
-      fontSize: 50.0,
-      fontWeight: FontWeight.bold,
-      fontFamily: 'Horizon',
-    );
     final Object? rcvdData = ModalRoute.of(context)!.settings.arguments;
 
     return WillPopScope(
@@ -315,16 +301,12 @@ class _MyHomePageState extends State<MyHomePage>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AnimatedTextKit(
-                      animatedTexts: [
-                        ColorizeAnimatedText(
-                          'Select Image',
-                          textStyle: colorizeTextStyle,
-                          colors: colorizeColors,
-                        ),
-                      ],
-                      isRepeatingAnimation: true,
-                      repeatForever: true,
+                    Text(
+                      'Select Image',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 3, 248, 12),
+                          fontSize: 38.0,
+                          fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 20.0,
@@ -339,12 +321,8 @@ class _MyHomePageState extends State<MyHomePage>
                             color: Colors.orangeAccent,
                           ),
                           style: TextButton.styleFrom(
-<<<<<<< HEAD
-                           
-=======
                               padding: EdgeInsets.symmetric(
                                   horizontal: 26, vertical: 15.0),
->>>>>>> salman
                               shape: borderShape.value,
                               primary: Colors.white,
                               backgroundColor: animation.value),
@@ -358,12 +336,8 @@ class _MyHomePageState extends State<MyHomePage>
                         ),
                         TextButton.icon(
                           style: TextButton.styleFrom(
-<<<<<<< HEAD
-                              
-=======
                               padding: EdgeInsets.symmetric(
                                   horizontal: 26, vertical: 15.0),
->>>>>>> salman
                               shape: borderShape.value,
                               primary: Colors.white,
                               backgroundColor: animation.value),
