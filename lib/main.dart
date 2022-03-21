@@ -121,18 +121,19 @@ class _MyHomePageState extends State<MyHomePage>
 
   predict(File file) async {
     var res = await Tflite.runModelOnImage(
-        path: file.path,
-        numResults: 15,
-        threshold: 0.5,
-        imageMean: 127.5,
-        imageStd: 127.5);
+      path: file.path,
+      numResults: 15,
+      threshold: 0.5,
+      imageMean: 127.5,
+      imageStd: 127.5,
+    );
 
     String imagePath = file.path;
+    print('result is null asad asad asad:::::::$res');
 
     setState(() {
       _result = res!;
-
-      if (_result.isEmpty) {
+      if (_result.isEmpty || _result[0]['label'] == '  Tomato Late blight') {
         showGeneralDialog(
             barrierColor: Colors.black.withOpacity(0.5),
             transitionBuilder: (context, a1, a2, widget) {

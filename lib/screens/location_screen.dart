@@ -55,7 +55,6 @@ class _LocationScreenState extends State<LocationScreen> {
         sky = weatherData['weather'][0]['description'];
 
         weatherIcon = weatherModel.getWeatherIcon(condition);
-        weatherMessage = weatherModel.getMessage(temperature.toInt());
       },
     );
   }
