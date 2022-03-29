@@ -80,7 +80,8 @@ class MainDrawer extends StatelessWidget {
             },
           ),
           Divider(
-            color: Colors.white30,
+            color: Colors.white,
+            thickness: 1,
           ),
           ListTile(
               trailing: Icon(Icons.arrow_forward_ios_rounded),
@@ -100,9 +101,7 @@ class MainDrawer extends StatelessWidget {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (_) => Diseases()));
               }),
-          Divider(
-            color: Colors.white30,
-          ),
+          Divider(color: Colors.white, thickness: 1),
           ListTile(
             trailing: Icon(Icons.arrow_forward_ios_rounded),
             leading: Icon(
@@ -125,9 +124,7 @@ class MainDrawer extends StatelessWidget {
               );
             },
           ),
-          Divider(
-            color: Colors.white30,
-          ),
+          Divider(color: Colors.white, thickness: 1),
           ListTile(
             trailing: Icon(Icons.arrow_forward_ios_rounded),
             leading: Icon(
@@ -150,9 +147,7 @@ class MainDrawer extends StatelessWidget {
               );
             },
           ),
-          Divider(
-            color: Colors.white30,
-          ),
+          Divider(color: Colors.white, thickness: 1),
           ListTile(
             trailing: Icon(Icons.arrow_forward_ios_rounded),
             leading: Icon(
@@ -196,9 +191,7 @@ class MainDrawer extends StatelessWidget {
               );
             },
           ),
-          Divider(
-            color: Colors.white30,
-          ),
+          Divider(color: Colors.white, thickness: 1),
         ],
       ),
     );

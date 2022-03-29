@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class PlantContainer extends StatelessWidget {
-  const PlantContainer(
-      {required this.onPress,
-      required this.plantName,
-      required this.imageAddress});
+  const PlantContainer({
+    required this.onPress,
+    required this.plantName,
+    required this.imageAddress,
+  });
 
   final VoidCallback onPress;
   final String plantName;
@@ -12,7 +13,7 @@ class PlantContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onPress,
       child: Card(
         child: GridTile(

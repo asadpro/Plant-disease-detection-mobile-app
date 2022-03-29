@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       routes: AppRoutes.appRoutes,
     );
   }
-}
+  }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
