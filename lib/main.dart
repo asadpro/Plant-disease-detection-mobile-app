@@ -66,18 +66,101 @@ class _MyHomePageState extends State<MyHomePage>
 
   Future loadMyModel() async {
     var resultant = await Tflite.loadModel(
-      labels: "assets/labels.txt",
-      model: "assets/model_unquant.tflite",
+      labels: "assets/plant_labels.txt",
+      model: "assets/plant_predictor_tf_binary_15.tflite",
     );
 
     print("result after loading model: $resultant");
   }
 
+
+  //check Image For Not Plants
+  checkImage(File file) async
+  {
+    
+
+    var resalt = await Tflite.runModelOnImage(
+        path: file.path,
+        numResults: 2,
+        threshold: 0.5,
+        imageMean: 127.5,
+        imageStd: 127.5);
+
+    //String imagePath = file.path;
+    print("first res");
+    print(resalt![0]["label"]);
+
+   print(resalt[0]["label"]==" plant");
+
+   // return;
+
+
+    
+    if(resalt[0]["label"]==" plant") {
+      print("helloooooo");
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: IconButton(
+                icon: Icon(
+                  Icons.warning,
+                  color: Colors.yellow,
+                ),
+                iconSize: 55.0,
+                onPressed: () {},
+              ),
+              content: Text(
+                'The Image does not seem to be a leaf. Do you still want to continiue?',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.red),
+              ),
+              actions: [
+                Center(
+                  child: TextButton.icon(
+                    onPressed: () async {
+                        var resultantant = await Tflite.loadModel(
+                                    labels: "assets/labels.txt",
+                                    model: "assets/model_unquant.tflite",
+                                  );
+                 print("result after loading model: $resultantant");
+                        predict(file);},
+                    icon: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 33.0,
+                    ),
+                    label: Text(
+                      'Predict Anyway..',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                )
+              ],
+            );
+          },
+        );
+      } else {
+        //Navigator.pushNamed(context, AppRoutes.homePage);
+        var resultantant = await Tflite.loadModel(
+                                    labels: "assets/labels.txt",
+                                    model: "assets/model_unquant.tflite",
+                                  );
+                 print("result after loading model: $resultantant");
+                        predict(file);
+      }
+
+
+  }
+
+
+
+
+
+
   @override
   void initState() {
     super.initState();
     loadMyModel();
-
     controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 2),
@@ -108,6 +191,14 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
+
+
+
+
+
+
+
+
   @override
   void dispose() {
     controller.dispose();
@@ -132,7 +223,10 @@ class _MyHomePageState extends State<MyHomePage>
 
     setState(() {
       _result = res!;
-      if (_result.isEmpty || _result[0]['label'] == '  Tomato Late blight') {
+      //if (_result.isEmpty || _result[0]['label'] == '  Tomato Late blight') 
+      if (_result.isEmpty) 
+      
+      {
         showGeneralDialog(
             barrierColor: Colors.black.withOpacity(0.5),
             transitionBuilder: (context, a1, a2, widget) {
@@ -234,7 +328,7 @@ class _MyHomePageState extends State<MyHomePage>
 
       setState(
         () {
-          predict(selectedImage!);
+          checkImage(selectedImage!);
         },
       );
     } catch (e) {
@@ -251,7 +345,7 @@ class _MyHomePageState extends State<MyHomePage>
 
       setState(
         () {
-          predict(selectedImage!);
+          checkImage(selectedImage!);
         },
       );
     } catch (e) {
