@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       routes: AppRoutes.appRoutes,
     );
   }
-  }
+}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -73,12 +73,8 @@ class _MyHomePageState extends State<MyHomePage>
     print("result after loading model: $resultant");
   }
 
-
   //check Image For Not Plants
-  checkImage(File file) async
-  {
-    
-
+  checkImage(File file) async {
     var resalt = await Tflite.runModelOnImage(
         path: file.path,
         numResults: 2,
@@ -90,72 +86,116 @@ class _MyHomePageState extends State<MyHomePage>
     print("first res");
     print(resalt![0]["label"]);
 
-   print(resalt[0]["label"]==" plant");
+    print(resalt[0]["label"] == " plant");
+    print(resalt[0]);
 
-   // return;
+    // return;
 
-
-    
-    if(resalt[0]["label"]==" plant") {
-      print("helloooooo");
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: IconButton(
-                icon: Icon(
-                  Icons.warning,
-                  color: Colors.yellow,
-                ),
-                iconSize: 55.0,
-                onPressed: () {},
-              ),
-              content: Text(
-                'The Image does not seem to be a leaf. Do you still want to continiue?',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.red),
-              ),
-              actions: [
-                Center(
-                  child: TextButton.icon(
-                    onPressed: () async {
-                        var resultantant = await Tflite.loadModel(
-                                    labels: "assets/labels.txt",
-                                    model: "assets/model_unquant.tflite",
-                                  );
-                 print("result after loading model: $resultantant");
-                        predict(file);},
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 33.0,
+    if (resalt[0]["label"] == " plant") {
+      // showDialog(
+      //   context: context,
+      //   builder: (BuildContext context) {
+      //     return AlertDialog(
+      //       title: IconButton(
+      //         icon: Icon(
+      //           Icons.warning,
+      //           color: Colors.yellow,
+      //         ),
+      //         iconSize: 55.0,
+      //         onPressed: () {},
+      //       ),
+      //       content: Text(
+      //         'The Image does not seem to be a leaf. Do you still want to continiue?',
+      //         textAlign: TextAlign.center,
+      //         style: TextStyle(color: Colors.red),
+      //       ),
+      //     );
+      //   },
+      // );
+      showGeneralDialog(
+          barrierColor: Colors.black.withOpacity(0.5),
+          transitionBuilder: (context, a1, a2, widget) {
+            return Transform.rotate(
+              angle: math.radians(a1.value * 360),
+              child: Opacity(
+                opacity: a1.value,
+                child: AlertDialog(
+                  insetPadding: EdgeInsets.zero,
+                  backgroundColor: Colors.white,
+                  shape: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey, width: 2),
+                      borderRadius: BorderRadius.circular(16.0)),
+                  title: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(18),
+                        color: Colors.red,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          IconButton(
+                            icon: Icon(
+                              Icons.warning,
+                              color: Colors.yellow,
+                            ),
+                            iconSize: 55.0,
+                            onPressed: () {},
+                          ),
+                          Text(
+                            'ALERT....!!!',
+                            style: kTitleText,
+                          )
+                        ],
+                      )),
+                  content: Text(
+                    'File could not be uploaded due to  the wrong format/wrong image !!! Please go back and pick the image again.',
+                    style: TextStyle(
+                      color: Colors.red,
                     ),
-                    label: Text(
-                      'Predict Anyway..',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    textAlign: TextAlign.justify,
                   ),
-                )
-              ],
+                  actions: [
+                    Center(
+                      child: OutlinedButton.icon(
+                        style: OutlinedButton.styleFrom(
+                            backgroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18)),
+                            padding: EdgeInsets.all(12)),
+                        onPressed: () =>
+                            Navigator.pushNamed(context, AppRoutes.homePage),
+                        icon: Icon(
+                          Icons.insert_photo_outlined,
+                          size: 33.0,
+                          color: Colors.yellow,
+                        ),
+                        label: Text(
+                          'Back Home',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             );
           },
-        );
-      } else {
-        //Navigator.pushNamed(context, AppRoutes.homePage);
-        var resultantant = await Tflite.loadModel(
-                                    labels: "assets/labels.txt",
-                                    model: "assets/model_unquant.tflite",
-                                  );
-                 print("result after loading model: $resultantant");
-                        predict(file);
-      }
-
-
+          transitionDuration: Duration(milliseconds: 600),
+          barrierDismissible: true,
+          barrierLabel: '',
+          context: context,
+          pageBuilder: (context, animation1, animation2) => Text('null'));
+    } else {
+      //Navigator.pushNamed(context, AppRoutes.homePage);
+      var resultantant = await Tflite.loadModel(
+        labels: "assets/labels.txt",
+        model: "assets/model_unquant.tflite",
+      );
+      print("result after loading model: $resultantant");
+      predict(file);
+    }
   }
-
-
-
-
-
 
   @override
   void initState() {
@@ -191,14 +231,6 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
-
-
-
-
-
-
-
-
   @override
   void dispose() {
     controller.dispose();
@@ -223,10 +255,8 @@ class _MyHomePageState extends State<MyHomePage>
 
     setState(() {
       _result = res!;
-      //if (_result.isEmpty || _result[0]['label'] == '  Tomato Late blight') 
-      if (_result.isEmpty) 
-      
-      {
+      //if (_result.isEmpty || _result[0]['label'] == '  Tomato Late blight')
+      if (_result.isEmpty) {
         showGeneralDialog(
             barrierColor: Colors.black.withOpacity(0.5),
             transitionBuilder: (context, a1, a2, widget) {

@@ -47,7 +47,7 @@ class _AboutState extends State<About> {
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: Color.fromARGB(255, 105, 112, 3),
+                color: Color.fromARGB(255, 47, 50, 10),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
