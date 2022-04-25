@@ -278,8 +278,12 @@ class Info extends StatelessWidget {
                             ),
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.pushNamed(
-                                    context, AppRoutes.homePage);
+                                // Navigator.pushNamed(
+                                //     context, AppRoutes.homePage);
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context,
+                                    AppRoutes.homePage,
+                                    (route) => route.isFirst);
                               },
                               child: Text(
                                 'Next Test',

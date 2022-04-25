@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:plant_disease_detection/routes/routes.dart';
@@ -92,26 +93,6 @@ class _MyHomePageState extends State<MyHomePage>
     // return;
 
     if (resalt[0]["label"] == " plant") {
-      // showDialog(
-      //   context: context,
-      //   builder: (BuildContext context) {
-      //     return AlertDialog(
-      //       title: IconButton(
-      //         icon: Icon(
-      //           Icons.warning,
-      //           color: Colors.yellow,
-      //         ),
-      //         iconSize: 55.0,
-      //         onPressed: () {},
-      //       ),
-      //       content: Text(
-      //         'The Image does not seem to be a leaf. Do you still want to continiue?',
-      //         textAlign: TextAlign.center,
-      //         style: TextStyle(color: Colors.red),
-      //       ),
-      //     );
-      //   },
-      // );
       showGeneralDialog(
           barrierColor: Colors.black.withOpacity(0.5),
           transitionBuilder: (context, a1, a2, widget) {
@@ -163,7 +144,11 @@ class _MyHomePageState extends State<MyHomePage>
                                 borderRadius: BorderRadius.circular(18)),
                             padding: EdgeInsets.all(12)),
                         onPressed: () =>
-                            Navigator.pushNamed(context, AppRoutes.homePage),
+                            // Navigator.pushNamed(context, AppRoutes.homePage),
+                            // Navigator.of(context)
+                            //     .popUntil((route) => route.isFirst),  #First screen will remain intact in navigation stack.
+                            Navigator.pushNamedAndRemoveUntil(context,
+                                AppRoutes.homePage, (route) => route.isFirst),
                         icon: Icon(
                           Icons.insert_photo_outlined,
                           size: 33.0,
@@ -308,7 +293,9 @@ class _MyHomePageState extends State<MyHomePage>
                                   borderRadius: BorderRadius.circular(18)),
                               padding: EdgeInsets.all(12)),
                           onPressed: () =>
-                              Navigator.pushNamed(context, AppRoutes.homePage),
+                              // Navigator.pushNamed(context, AppRoutes.homePage),
+                              Navigator.pushNamedAndRemoveUntil(context,
+                                  AppRoutes.homePage, (route) => route.isFirst),
                           icon: Icon(
                             Icons.insert_photo_outlined,
                             size: 33.0,
@@ -388,17 +375,28 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     final Object? rcvdData = ModalRoute.of(context)!.settings.arguments;
+    const colorizeColors = [
+      Colors.purple,
+      Colors.blue,
+      Colors.yellow,
+      Colors.red,
+    ];
+    const colorizeTextStyle = TextStyle(
+      fontSize: 50.0,
+      fontFamily: 'Atma-Bold',
+    );
 
     return WillPopScope(
       onWillPop: () async {
         final difference = DateTime.now().difference(timeBackPress);
         final isExitWarning = difference >= Duration(seconds: 2);
+
         timeBackPress = DateTime.now();
         if (isExitWarning) {
           const message = 'Press back button again to exit';
           Fluttertoast.showToast(
             msg: message,
-            fontSize: 14,
+            fontSize: 14,   
             backgroundColor: Colors.red,
           );
 
@@ -427,12 +425,18 @@ class _MyHomePageState extends State<MyHomePage>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Select Image',
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 3, 248, 12),
-                          fontSize: 38.0,
-                          fontWeight: FontWeight.bold),
+                    AnimatedTextKit(
+                      animatedTexts: [
+                        ColorizeAnimatedText(
+                          'SELECT IMAGE',
+                          textStyle: colorizeTextStyle,
+                          colors: colorizeColors,
+                        ),
+                      ],
+                      repeatForever: true,
+                      onTap: () {
+                        print("Tap Event");
+                      },
                     ),
                     SizedBox(
                       height: 20.0,

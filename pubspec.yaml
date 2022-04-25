@@ -56,4 +56,7 @@ flutter:
     - family: Ubuntu-Regular
       fonts:
         - asset: fonts/Ubuntu-Regular.ttf
+    - family: Atma-Bold
+      fonts:
+        - asset: fonts/Atma-Bold.ttf
 
